@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    background-color: #090d16;
+    color: #f1f5f9;
+  }
+
+  :focus-visible {
+    outline: 3px solid #38bdf8;
+    outline-offset: 2px;
+  }
+}
+
+.high-contrast-mode button,
+.high-contrast-mode input,
+.high-contrast-mode select,
+.high-contrast-mode [data-card='true'] {
+  border-color: rgba(125, 211, 252, 0.7) !important;
+  border-width: 2px !important;
+}

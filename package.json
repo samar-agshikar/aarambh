@@ -1,0 +1,83 @@
+{
+  "name": "aarambh-gaze",
+  "version": "1.0.0",
+  "description": "Aarambh Gaze \u2014 Accessible gaze-ready AAC communication desktop app",
+  "author": "Aarambh Gaze",
+  "private": true,
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "electron:dev": "vite build && electron .",
+    "build:mac": "tsc && vite build && CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac dmg",
+    "build:mac:universal": "tsc && vite build && CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --mac dmg --arm64 --x64"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.6.3",
+    "vite": "^6.0.0"
+  },
+  "build": {
+    "appId": "com.aarambhgaze.app",
+    "productName": "Aarambh Gaze",
+    "directories": {
+      "buildResources": "build",
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.utilities",
+      "icon": "build/icon.png",
+      "darkModeSupport": true,
+      "hardenedRuntime": false,
+      "gatekeeperAssess": false,
+      "identity": null,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist",
+      "extendInfo": {
+        "NSCameraUsageDescription": "Aarambh Gaze uses your Mac camera locally to preview face alignment and prepare for gaze tracking. Video never leaves your device.",
+        "NSMicrophoneUsageDescription": "Aarambh Gaze may request audio access for accessibility features."
+      },
+      "target": [
+        {
+          "target": "dmg"
+        }
+      ]
+    },
+    "dmg": {
+      "title": "Aarambh Gaze",
+      "contents": [
+        {
+          "x": 140,
+          "y": 170
+        },
+        {
+          "x": 400,
+          "y": 170,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ],
+      "window": {
+        "width": 540,
+        "height": 340
+      }
+    }
+  }
+}
